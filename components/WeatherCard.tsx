@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 
 interface WeatherData {
@@ -14,14 +16,15 @@ interface WeatherCardProps {
 
 const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
   return (
-    <div className="bg-white p-4 rounded shadow-lg">
-      <h2 className="text-2xl mb-4">{data.location}</h2>
-      <p>{data.description}</p>
-      <p>Temperature: {data.temperature}°C</p>
-      <p>Humidity: {data.humidity}%</p>
-      <p>Wind Speed: {data.windSpeed} m/s</p>
+    <div className="bg-white rounded-md shadow-md p-8 w-full">
+      <h2 className="text-2xl font-bold mb-4">{data.location}</h2>
+      <p className="mb-2">Description: {data.description}</p>
+      <p className="mb-2">Temperature: {data.temperature} °C</p>
+      <p className="mb-2">Humidity: {data.humidity}%</p>
+      <p className="mb-2">Wind Speed: {data.windSpeed} m/s</p>
     </div>
   );
 };
 
 export default WeatherCard;
+

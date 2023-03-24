@@ -1,3 +1,5 @@
+// components/Layout.tsx
+
 import React from 'react';
 
 interface LayoutProps {
@@ -6,12 +8,12 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-500 text-white p-4">Weather App</header>
-      <main className="container mx-auto p-4">{children}</main>
-      <footer className="text-center py-4">© 2023 Weather App. All rights reserved.</footer>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <div className="w-full max-w-2xl px-4">{children}</div>
     </div>
   );
 };
 
 export default Layout;
+
+

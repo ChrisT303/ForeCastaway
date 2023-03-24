@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 
 interface SearchProps {
@@ -9,19 +11,24 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(location);
+    if (location.trim()) {
+      onSearch(location);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center">
+    <form onSubmit={handleSubmit} className="flex items-center justify-center mb-8">
       <input
         type="text"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded"
-        placeholder="Enter location"
+        placeholder="Search location"
+        className="border border-gray-300 rounded-md px-3 py-2 w-3/4 focus:outline-none focus:ring focus:border-blue-300"
       />
-      <button type="submit" className="ml-2 px-4 py-2 bg-blue-500 text-white rounded">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white rounded-md px-4 py-2 ml-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+      >
         Search
       </button>
     </form>
