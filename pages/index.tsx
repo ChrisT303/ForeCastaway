@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import Search from '../components/Search';
 import WeatherCard from '@components/WeatherCard';
 
+
 interface WeatherData {
   location: string;
   description: string;
@@ -37,7 +38,7 @@ const Home = () => {
   };
 
   return (
-    <Layout>
+    <Layout weather={weatherData?.description}>
       <Search onSearch={handleSearch} />
       {weatherData && <WeatherCard data={weatherData} />}
     </Layout>
@@ -45,5 +46,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
