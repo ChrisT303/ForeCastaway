@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faCloud, faThunderstorm, faCloudRain, faCloudShowersHeavy, faSnowflake, faSmog, faTornado } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faCloud, faThunderstorm, faCloudRain, faCloudShowersHeavy, faSnowflake, faSmog, faTornado, faWind } from '@fortawesome/free-solid-svg-icons';
 
 interface WeatherData {
   location: string;
@@ -17,6 +17,9 @@ interface WeatherCardProps {
 const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
   let icon;
   let color;
+  const windSpeed = data.windSpeed * 2.237;
+  const roundedWindSpeed = Math.round(windSpeed);
+
 
   if (data.description.toLowerCase().includes('clear')) {
     icon = faSun;
@@ -44,6 +47,12 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
     color = 'gray';
   }
 
+  if (data.windSpeed * 2.237 >= 20) {
+    icon = faWind;
+    color = 'gray';
+  }
+  
+
   return (
     <div className="bg-white rounded-md shadow-md p-8 w-full flex">
       <div className="flex-1">
@@ -51,7 +60,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
         <p className="mb-2">Description: {data.description}</p>
         <p className="mb-2">Temperature: {data.temperature} °C</p>
         <p className="mb-2">Humidity: {data.humidity}%</p>
-        <p className="mb-2">Wind Speed: {data.windSpeed} m/s</p>
+        <p className="mb-2"><p className="mb-2">Wind Speed: {roundedWindSpeed} mph</p></p>
       </div>
       {icon && (
     <div className="flex-shrink-0 self-center mr-8">
@@ -62,6 +71,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
     </div>
   );
 };
+
 
 export default WeatherCard;
 
