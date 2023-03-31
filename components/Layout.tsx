@@ -53,7 +53,7 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
     backgroundImage = '/tornado-background.jpg';
   }
   else {
-    backgroundImage = '/clear-background.jpg';
+    backgroundImage = '/default-background.jpg';
   }
 
   return (
