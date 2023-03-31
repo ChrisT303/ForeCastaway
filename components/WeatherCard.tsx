@@ -1,6 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faCloud, faThunderstorm, faCloudRain, faCloudShowersHeavy, faSnowflake, faSmog, faTornado, faWind } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
+
 
 interface WeatherData {
   location: string;
@@ -8,6 +10,7 @@ interface WeatherData {
   temperature: number;
   humidity: number;
   windSpeed: number;
+  date: number;
 }
 
 interface WeatherCardProps {
@@ -57,8 +60,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
     <div className="bg-white rounded-md shadow-md p-8 w-full flex">
       <div className="flex-1">
         <h2 className="text-2xl font-bold mb-4">{data.location}</h2>
+        <p className="text-sm mb-4">{moment.unix(data.date).format('dddd, MMMM Do, YYYY')}</p>
         <p className="mb-2">Description: {data.description}</p>
-        <p className="mb-2">Temperature: {data.temperature} °C</p>
+        <p className="mb-2">Temperature: {Math.round(data.temperature)} °F</p>
         <p className="mb-2">Humidity: {data.humidity}%</p>
         <p className="mb-2"><p className="mb-2">Wind Speed: {roundedWindSpeed} mph</p></p>
       </div>
