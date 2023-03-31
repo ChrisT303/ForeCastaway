@@ -5,55 +5,74 @@ interface LayoutProps {
   weather?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
-  let backgroundImage;
+const weatherToBackgroundImage: Record<string, string> = {
+  'ragged shower rain': '/rain-background.jpg',
+  'light rain': '/rain-background.jpg',
+  'moderate rain': '/rain-background.jpg',
+  'heavy intensity rain': '/rain-background.jpg',
+  'very heavy rain': '/rain-background.jpg',
+  'extreme rain': '/rain-background.jpg',
+  'freezing rain': '/rain-background.jpg',
+  'light intensity shower rain': '/rain-background.jpg',
+  'shower rain': '/rain-background.jpg',
+  'heavy intensity shower rain': '/rain-background.jpg',
+  'snow': '/snow-background.jpg',
+  'light snow': '/snow-background.jpg',
+  'heavy snow': '/snow-background.jpg',
+  'sleet': '/snow-background.jpg',
+  'light shower sleet': '/snow-background.jpg',
+  'shower sleet': '/snow-background.jpg',
+  'light rain and snow': '/snow-background.jpg',
+  'rain and snow': '/snow-background.jpg',
+  'light shower snow': '/snow-background.jpg',
+  'shower snow': '/snow-background.jpg',
+  'heavy shower snow': '/snow-background.jpg',
+  'thunderstorm': '/thunderstorm-background.jpg',
+  'thunderstorm with light rain': '/thunderstorm-background.jpg',
+  'thunderstorm with rain': '/thunderstorm-background.jpg',
+  'thunderstorm with heavy rain': '/thunderstorm-background.jpg',
+  'light thunderstorm': '/thunderstorm-background.jpg',
+  'heavy thunderstorm': '/thunderstorm-background.jpg',
+  'ragged thunderstorm': '/thunderstorm-background.jpg',
+  'thunderstorm with light drizzle': '/thunderstorm-background.jpg',
+  'thunderstorm with drizzle': '/thunderstorm-background.jpg',
+  'thunderstorm with heavy drizzle': '/thunderstorm-background.jpg',
+  'drizzle': '/drizzle-background.jpg',
+  'light intensity drizzle': '/drizzle-background.jpg',
+  'heavy intensity drizzle': '/drizzle-background.jpg',
+  'light intensity drizzle rain': '/drizzle-background.jpg',
+  'drizzle rain': '/drizzle-background.jpg',
+  'heavy intensity drizzle rain': '/drizzle-background.jpg',
+  'shower rain and drizzle': '/drizzle-background.jpg',
+  'heavy shower rain and drizzle': '/drizzle-background.jpg',
+  'shower drizzle': '/drizzle-background.jpg',
+  'mist': '/mist-background.jpg',
+  'overcast clouds': '/clouds-background.jpg',
+  'scattered clouds': '/clouds-background.jpg',
+  'broken clouds': '/clouds-background.jpg',
+  'few clouds': '/clouds-background.jpg',
+  'smoke': '/smoke-background.jpg',
+  'haze': '/haze-background.jpg',
+  'dust': '/dust-background.jpg',
+  'fog': '/fog-background.jpg',
+  'sand': '/sand-background.jpg',
+  'ash': '/ash-background.jpg',
+  'squall': '/squall-background.jpg',
+  'clear sky': '/clear-sky-background.jpg',
+  'tornado': '/tornado-background.jpg',
+  'default': '/default-background.jpg',
+};
 
-  if (weather && weather.toLowerCase().includes('rain')) {
-    backgroundImage = '/rain-background.jpg';
-  } else if (weather && weather.toLowerCase().includes('snow')) {
-    backgroundImage = '/snow-background.jpg';
-  } 
-  else if (weather && weather.toLowerCase().includes('thunderstorm')) {
-    backgroundImage = '/thunderstorm-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('drizzle')) {
-    backgroundImage = '/drizzle-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('mist')) {
-    backgroundImage = '/mist-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('clouds')) {
-    backgroundImage = '/clouds-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('smoke')) {
-    backgroundImage = '/smoke-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('haze')) {
-    backgroundImage = '/haze-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('dust')) {
-    backgroundImage = '/dust-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('fog')) {
-    backgroundImage = '/fog-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('sand')) {
-    backgroundImage = '/sand-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('ash')) {
-    backgroundImage = '/ash-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('squall')) {
-    backgroundImage = '/squall-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('clear')) {
-    backgroundImage = '/clear-sky-background.jpg';
-  }
-  else if (weather && weather.toLowerCase().includes('tornado')) {
-    backgroundImage = '/tornado-background.jpg';
-  }
-  else {
-    backgroundImage = '/default-background.jpg';
+const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
+  let backgroundImage = '/default-background.jpg';
+
+  if (weather) {
+    const weatherLower = weather.toLowerCase();
+    console.log(`weatherLower: ${weatherLower}`);
+
+    backgroundImage = weatherToBackgroundImage[weatherLower] || weatherToBackgroundImage.default;
+    console.log(`backgroundImage: ${backgroundImage}`);
+
   }
 
   return (
@@ -68,6 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
 
 
 export default Layout;
+
 
 
 
