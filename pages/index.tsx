@@ -16,7 +16,6 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
   const handleSearch = async (location: string) => {
-    // Fetch weather data using a weather API, e.g., OpenWeatherMap
     const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`
@@ -24,6 +23,10 @@ const Home = () => {
 
     if (response.ok) {
       const data = await response.json();
+       
+      console.log(data)
+   
+      
       setWeatherData({
         location: `${data.name}, ${data.sys.country}`,
         description: data.weather[0].description,
@@ -32,7 +35,6 @@ const Home = () => {
         windSpeed: data.wind.speed,
       });
     } else {
-      // Handle error, e.g., display an error message
       console.error(`Error fetching weather data: ${response.statusText}`);
     }
   };
