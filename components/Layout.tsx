@@ -68,11 +68,7 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
 
   if (weather) {
     const weatherLower = weather.toLowerCase();
-    console.log(`weatherLower: ${weatherLower}`);
-
     backgroundImage = weatherToBackgroundImage[weatherLower] || weatherToBackgroundImage.default;
-    console.log(`backgroundImage: ${backgroundImage}`);
-
   }
 
   return (
