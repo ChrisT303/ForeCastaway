@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import Layout from '../components/Layout';
-import Search from '../components/Search';
+import React, { useState, useEffect } from 'react';
+import Layout from '@components/Layout';
+import Search from '@components/Search';
 import WeatherCard from '@components/WeatherCard';
 import ForecastCard from '@components/ForecastCard';
+import RecentSearches from '@components/RecentSearches';
+
 
 interface WeatherData {
   location: string;
@@ -23,6 +25,15 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<ForecastData[]>([]);
 
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+
+  useEffect(() => {
+    const savedSearches = localStorage.getItem('recentSearches');
+    setRecentSearches(savedSearches ? JSON.parse(savedSearches) : []);
+  }, []);
+  
+  
+
   const handleSearch = async (location: string) => {
     const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
     const response = await fetch(
@@ -42,6 +53,8 @@ const Home = () => {
         windSpeed: data.wind.speed,
         date: data.dt,
       });
+  
+      handleRecentSearch(`${data.name}, ${data.sys.country}`);
     } else {
       console.error(`Error fetching weather data: ${response.statusText}`);
     }
@@ -60,7 +73,7 @@ const Home = () => {
         dailyData.map((item: any) => ({
           date: item.dt,
           icon: item.weather[0].icon,
-          temp: (item.main.temp * 9) / 5 + 32, // Convert to Fahrenheit
+          temp: (item.main.temp * 9) / 5 + 32, 
         }))
       );
     } else {
@@ -68,18 +81,39 @@ const Home = () => {
     }
   };
   
+  const handleRecentSearch = (location: string) => {
+    const updatedSearches = [...recentSearches, location].slice(-5);
+    setRecentSearches(updatedSearches);
+    localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
+  };
+
+  const clearRecentSearches = () => {
+    setRecentSearches([]);
+    localStorage.removeItem('recentSearches');
+  };
+
 
   return (
     <Layout weather={weatherData?.description}>
-      <Search onSearch={handleSearch} />
-      {weatherData && <WeatherCard data={weatherData} />}
-      <div className="flex flex-wrap justify-center">
-        {forecastData.map((data, index) => (
-          <ForecastCard key={index} data={data} />
-        ))}
+      <div className="flex">
+        <RecentSearches
+          searches={recentSearches}
+          onSearchItemClick={handleSearch}
+          onClear={clearRecentSearches}
+        />
+        <div className="flex flex-col w-full">
+          <Search onSearch={handleSearch} />
+          {weatherData && <WeatherCard data={weatherData} />}
+          <div className="flex justify-center">
+            {forecastData.map((data, index) => (
+              <ForecastCard key={index} data={data} />
+            ))}
+          </div>
+        </div>
       </div>
     </Layout>
   );
+  
 };
 
 export default Home;
