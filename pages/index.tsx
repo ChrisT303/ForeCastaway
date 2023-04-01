@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from '@components/Layout';
 import Search from '@components/Search';
 import WeatherCard from '@components/WeatherCard';
@@ -48,7 +50,7 @@ const Home = () => {
       setWeatherData({
         location: `${data.name}, ${data.sys.country}`,
         description: data.weather[0].description,
-        temperature: (data.main.temp * 9) / 5 + 32, // Convert to Fahrenheit
+        temperature: (data.main.temp * 9) / 5 + 32, 
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
         date: data.dt,
@@ -57,9 +59,12 @@ const Home = () => {
       handleRecentSearch(`${data.name}, ${data.sys.country}`);
     } else {
       console.error(`Error fetching weather data: ${response.statusText}`);
+      toast.error('No city found, please try again', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
     }
   
-    // Fetch the 5-day forecast
     const forecastResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=metric`
     );
@@ -99,6 +104,7 @@ const Home = () => {
 
   return (
     <Layout weather={weatherData?.description}>
+        <ToastContainer />
       <div className="flex flex-col md:flex-row">
         <RecentSearches
           searches={recentSearches}

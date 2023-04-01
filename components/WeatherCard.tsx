@@ -4,15 +4,6 @@ import { faSun, faCloud, faThunderstorm, faCloudRain, faCloudShowersHeavy, faSno
 import moment from 'moment';
 
 
-interface WeatherData {
-  location: string;
-  description: string;
-  temperature: number;
-  humidity: number;
-  windSpeed: number;
-  date: number;
-}
-
 interface WeatherCardProps {
   data: {
     location: string;
@@ -65,23 +56,23 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data, className }) => {
   
 
   return (
-<div className={`bg-white rounded-lg p-4 shadow-md ${className} flex`}>
-    <div className="flex-1">
+    <div className={`bg-white rounded-lg p-4 shadow-md ${className} flex`}>
+      <div className="flex-1">
         <h2 className="text-2xl font-bold mb-4">{data.location}</h2>
         <p className="text-sm mb-4">{moment.unix(data.date).format('dddd, MMMM Do, YYYY')}</p>
         <p className="mb-2">Description: {data.description}</p>
         <p className="mb-2">Temperature: {Math.round(data.temperature)} °F</p>
         <p className="mb-2">Humidity: {data.humidity}%</p>
-        <p className="mb-2"><p className="mb-2">Wind Speed: {roundedWindSpeed} mph</p></p>
+        <p className="mb-2">Wind Speed: {roundedWindSpeed} mph</p>
       </div>
       {icon && (
-    <div className="flex-shrink-0 self-center mr-8">
-    <FontAwesomeIcon icon={icon} size="5x" color={color} />
-  </div>
-  
+        <div className="flex-shrink-0 self-center mr-8">
+          <FontAwesomeIcon icon={icon} size="5x" color={color} />
+        </div>
       )}
     </div>
   );
+  
 };
 
 
