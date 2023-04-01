@@ -3,3 +3,34 @@
 @import 'tailwindcss/utilities';
 
 
+
+  
+  .forecast-card {
+    width: 150px;
+  }
+  
+  .recent-searches-spacing {
+    margin-right: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .weather-card-container {
+      flex-wrap: nowrap;
+    }
+  }
+  
+  .weather-card {
+    width: 100%;
+    
+  }
+  
+  @media (min-width: 768px) {
+    .weather-card {
+      width: 150px;
+    }
+  }
+  
+  
+
+  
+  

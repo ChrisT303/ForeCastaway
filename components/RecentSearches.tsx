@@ -4,6 +4,7 @@ interface RecentSearchesProps {
   searches: string[];
   onSearchItemClick: (location: string) => void;
   onClear: () => void;
+  className?: string; 
 }
 
 const RecentSearches: React.FC<RecentSearchesProps> = ({
@@ -12,7 +13,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = ({
   onClear,
 }) => {
   return (
-    <div className="mt-4">
+    <div className="mt-4 mr-10">
       <h3 className="text-xl font-bold mb-2">Recent Searches</h3>
       <ul>
         {searches.map((location, index) => (
@@ -36,5 +37,6 @@ const RecentSearches: React.FC<RecentSearchesProps> = ({
     </div>
   );
 };
+
 
 export default RecentSearches;

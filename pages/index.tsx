@@ -99,25 +99,30 @@ const Home = () => {
 
   return (
     <Layout weather={weatherData?.description}>
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <RecentSearches
           searches={recentSearches}
           onSearchItemClick={handleSearch}
           onClear={clearRecentSearches}
+          className="mr-4 mb-4 md:mb-0"
         />
         <div className="flex flex-col w-full">
           <Search onSearch={handleSearch} />
-          {weatherData && <WeatherCard data={weatherData} />}
-          <div className="flex justify-center">
+          {weatherData && (
+            <WeatherCard
+              data={weatherData}
+              className="mb-4 w-full md:w-auto"
+            />
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {forecastData.map((data, index) => (
-              <ForecastCard key={index} data={data} />
+              <ForecastCard key={index} data={data} className="forecast-card" />
             ))}
           </div>
         </div>
       </div>
     </Layout>
-  );
-  
+  ); 
 };
 
 export default Home;

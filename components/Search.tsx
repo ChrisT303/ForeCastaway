@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 
 interface SearchProps {
@@ -23,7 +21,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         value={location}
         onChange={(e) => setLocation(e.target.value)}
         placeholder="Search location"
-        className="border border-gray-300 rounded-md px-3 py-2 w-3/4 focus:outline-none focus:ring focus:border-blue-300"
+        className="border border-gray-300 rounded-md px-3 py-2 w-full md:w-3/4 focus:outline-none focus:ring focus:border-blue-300"
       />
       <button
         type="submit"
@@ -36,3 +34,4 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 };
 
 export default Search;
+

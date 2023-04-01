@@ -14,10 +14,18 @@ interface WeatherData {
 }
 
 interface WeatherCardProps {
-  data: WeatherData;
+  data: {
+    location: string;
+    description: string;
+    temperature: number;
+    humidity: number;
+    windSpeed: number;
+    date: number;
+  };
+  className?: string;
 }
 
-const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({ data, className }) => {
   let icon;
   let color;
   const windSpeed = data.windSpeed * 2.237;
@@ -57,8 +65,8 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
   
 
   return (
-    <div className="bg-white rounded-md shadow-md p-8 w-full flex">
-      <div className="flex-1">
+<div className={`bg-white rounded-lg p-4 shadow-md ${className} flex`}>
+    <div className="flex-1">
         <h2 className="text-2xl font-bold mb-4">{data.location}</h2>
         <p className="text-sm mb-4">{moment.unix(data.date).format('dddd, MMMM Do, YYYY')}</p>
         <p className="mb-2">Description: {data.description}</p>
