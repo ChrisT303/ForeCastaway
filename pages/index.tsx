@@ -82,10 +82,14 @@ const Home = () => {
   };
   
   const handleRecentSearch = (location: string) => {
-    const updatedSearches = [...recentSearches, location].slice(-5);
-    setRecentSearches(updatedSearches);
-    localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
+    const isLocationAlreadySearched = recentSearches.includes(location);
+    if (!isLocationAlreadySearched) {
+      const updatedSearches = [...recentSearches, location].slice(-5);
+      setRecentSearches(updatedSearches);
+      localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
+    }
   };
+  
 
   const clearRecentSearches = () => {
     setRecentSearches([]);

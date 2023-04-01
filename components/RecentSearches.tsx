@@ -30,7 +30,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = ({
           className="mt-2 text-sm text-red-500 hover:text-red-700"
           onClick={onClear}
         >
-          Clear Recent Searches
+          Clear Searches
         </button>
       )}
     </div>
