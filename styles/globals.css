@@ -4,8 +4,7 @@
 
 
 
-  
-  .forecast-card {
+.forecast-card {
     width: 150px;
   }
   
@@ -21,7 +20,7 @@
   
   .weather-card {
     width: 100%;
-    
+    min-width: 150px;
   }
   
   @media (min-width: 768px) {
@@ -29,6 +28,22 @@
       width: 150px;
     }
   }
+  
+  @media (max-width: 767px) {
+    .forecast-card {
+      width: calc((100% - 16px) / 2);
+      margin: 0 auto;
+    }
+    
+    .forecast-card:last-child {
+      margin-bottom: 0;
+    }
+    
+    .forecast-card:nth-child(n+4) {
+      margin-top: 2rem;
+    }
+  }
+  
   
   
 
