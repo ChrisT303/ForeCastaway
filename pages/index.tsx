@@ -26,7 +26,7 @@ interface ForecastData {
 const Home = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<ForecastData[]>([]);
-
+  const [cityFound, setCityFound] = useState(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   useEffect(() => {
@@ -57,6 +57,7 @@ const Home = () => {
       });
   
       handleRecentSearch(`${data.name}, ${data.sys.country}`);
+      setCityFound(true);
     } else {
       console.error(`Error fetching weather data: ${response.statusText}`);
       toast.error('No city found, please try again', {

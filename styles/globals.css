@@ -44,6 +44,15 @@
     }
   }
   
+  .bg-fade-in {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+  .bg-fade-in.loaded {
+    opacity: 1;
+  }
+  
   
   
 

@@ -74,11 +74,16 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
   return (
     <div
       className="min-h-screen bg-gray-100 flex flex-col items-center justify-center relative"
-      style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        transition: 'background-image 1s ease-in-out'
+      }}
     >
       <div className="w-full max-w-2xl px-4">{children}</div>
     </div>
   );
+  
 };
 
 
