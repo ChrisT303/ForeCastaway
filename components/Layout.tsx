@@ -86,11 +86,26 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
-        transition: 'background-image 1s ease-in-out'
+        transition: 'background-image 1s ease-in-out',
       }}
     >
-      <div className="absolute top-0 w-full flex justify-center">
-        <Image src="/Forecastaway.png" alt="My Logo" width={300} height={50} />
+      <div className="absolute top-4 right-4 mt-6 sm:top-0 sm:right-0 sm:left-0 w-full flex justify-center sm:justify-center">
+        <div className="w-24 h-4 sm:w-48 sm:h-8">
+          <Image
+            src="/Forecastaway.png"
+            alt="My Logo"
+            width={96}
+            height={16}
+            className="block sm:hidden"
+          />
+          <Image
+            src="/Forecastaway.png"
+            alt="My Logo"
+            width={300}
+            height={50}
+            className="hidden sm:block"
+          />
+        </div>
       </div>
       <div className="w-full max-w-2xl px-4">
         {description}
@@ -98,6 +113,7 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
       </div>
     </div>
   );
+  
 };
 
 
