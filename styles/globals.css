@@ -52,6 +52,11 @@
   .bg-fade-in.loaded {
     opacity: 1;
   }
+
+  .font-pirata {
+    font-family: 'Pirata One', cursive;
+  }
+  
   
   
   

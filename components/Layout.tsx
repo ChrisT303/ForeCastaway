@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -65,11 +67,18 @@ const weatherToBackgroundImage: Record<string, string> = {
 
 const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
   let backgroundImage = '/default-background.jpg';
+  let description: React.ReactNode = (
+    <p className="text-center text-white text-xl mb-16 font-pirata">
+      Ahoy there! Me weather app be the finest way to keep ye mateys informed on the weather. Whether ye be sailin&apos; the high seas or just plottin&apos; yer next adventure, me app be providin&apos; ye with the most accurate and up-to-date weather forecasts. So hoist the colors and set sail with me app, ye won&apos;t regret it!
+    </p>
+  );
 
   if (weather) {
     const weatherLower = weather.toLowerCase();
     backgroundImage = weatherToBackgroundImage[weatherLower] || weatherToBackgroundImage.default;
+    description = null;
   }
+
 
   return (
     <div
@@ -80,11 +89,18 @@ const Layout: React.FC<LayoutProps> = ({ children, weather }) => {
         transition: 'background-image 1s ease-in-out'
       }}
     >
-      <div className="w-full max-w-2xl px-4">{children}</div>
+      <div className="absolute top-0 w-full flex justify-center">
+        <Image src="/Forecastaway.png" alt="My Logo" width={300} height={50} />
+      </div>
+      <div className="w-full max-w-2xl px-4">
+        {description}
+        {children}
+      </div>
     </div>
   );
-  
 };
+
+
 
 
 export default Layout;
