@@ -46,7 +46,7 @@ Contributions, issues, and feature requests are welcome! Feel free to open an is
 
 ## License
 
-https://img.shields.io/badge/license-MIT-green
+![License: MIT](https://img.shields.io/github/license/deftonechris/forecastaway?color=green)
 ## Link to Application
 
  [Forecastaway](https://fore-castaway-rvp6.vercel.app/)
