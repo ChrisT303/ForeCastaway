@@ -4,15 +4,15 @@ ForeCastaway is a modern, responsive weather app built using Next.js, TypeScript
 
 ## Features
 
-Search for weather data by location
-Display current weather conditions, including temperature, humidity, and wind speed
-Responsive design
-Fully animated backgrounds and visual elements (in progress)
+* Search for weather data by location
+* Display current weather conditions, including temperature, humidity, and wind speed
+* Responsive design
+* Fully animated backgrounds and visual elements (in progress)
 ## Technologies
 
-Next.js - A React framework for building performant, server-rendered React applications
-TypeScript - A statically typed superset of JavaScript that adds optional types
-Tailwind CSS - A utility-first CSS framework for rapidly building custom designs
+* Next.js - A React framework for building performant, server-rendered React applications
+* TypeScript - A statically typed superset of JavaScript that adds optional types
+* Tailwind CSS - A utility-first CSS framework for rapidly building custom designs
 
 Installation
 
