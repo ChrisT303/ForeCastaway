@@ -46,8 +46,7 @@ Contributions, issues, and feature requests are welcome! Feel free to open an is
 
 ## License
 
-This project is licensed under the MIT License.
-
+![GitHub](https://img.shields.io/github/license/deftonechris/forecastaway)
 ## Link to Application
 
  [Forecastaway](https://fore-castaway-rvp6.vercel.app/)
